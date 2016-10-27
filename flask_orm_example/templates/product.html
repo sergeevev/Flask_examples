@@ -1,0 +1,19 @@
+{% extends "_base_template.html" %}
+
+{% block content %}
+    <form action="{{ url_for('product_views.new_product') }}" method="POST">
+        {% for field in form %}
+            <p>{{ field.label }}</p>
+            <p>{{ field() }}</p>
+            {% if field.errors %}
+                <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+        {% endfor %}
+
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
